@@ -1,11 +1,16 @@
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
+import { createMockSupabaseClient, hasSupabaseConfig } from "./mock"
 
 /**
  * Creates a Supabase server client for use in Server Components and Server Actions.
  * Important: Always create a new client within each function, don't store globally.
  */
 export async function createClient() {
+  if (!hasSupabaseConfig) {
+    return createMockSupabaseClient()
+  }
+
   const cookieStore = await cookies()
 
   return createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {

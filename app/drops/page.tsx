@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Clock } from "lucide-react"
+import Link from "next/link"
 
 export default async function DropsPage() {
   const user = await getCurrentUser()
@@ -36,19 +37,21 @@ export default async function DropsPage() {
             {activeDrop && (
               <div>
                 <h2 className="text-xl font-semibold mb-4">Active Now</h2>
-                <Card className="border-primary">
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <Badge className="bg-primary">Live Now</Badge>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Clock className="h-4 w-4" />
-                        Ends {new Date(activeDrop.end_date).toLocaleDateString()}
+                <Link href={`/shop?drop=${activeDrop.id}`}>
+                  <Card className="border-primary hover:shadow-lg transition-shadow">
+                    <CardHeader>
+                      <div className="flex items-center justify-between">
+                        <Badge className="bg-primary">Live Now</Badge>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Clock className="h-4 w-4" />
+                          Ends {new Date(activeDrop.end_date).toLocaleDateString()}
+                        </div>
                       </div>
-                    </div>
-                    <CardTitle className="mt-4">{activeDrop.title}</CardTitle>
-                    <CardDescription>{activeDrop.description}</CardDescription>
-                  </CardHeader>
-                </Card>
+                      <CardTitle className="mt-4">{activeDrop.title}</CardTitle>
+                      <CardDescription>{activeDrop.description}</CardDescription>
+                    </CardHeader>
+                  </Card>
+                </Link>
               </div>
             )}
 
@@ -57,19 +60,21 @@ export default async function DropsPage() {
                 <h2 className="text-xl font-semibold mb-4">Coming Soon</h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   {upcomingDrops.map((drop) => (
-                    <Card key={drop.id}>
-                      <CardHeader>
-                        <div className="flex items-center justify-between">
-                          <Badge variant="secondary">Upcoming</Badge>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Clock className="h-4 w-4" />
-                            {new Date(drop.start_date).toLocaleDateString()}
+                    <Link key={drop.id} href={`/shop?drop=${drop.id}`}>
+                      <Card className="hover:shadow-lg transition-shadow">
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <Badge variant="secondary">Upcoming</Badge>
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Clock className="h-4 w-4" />
+                              {new Date(drop.start_date).toLocaleDateString()}
+                            </div>
                           </div>
-                        </div>
-                        <CardTitle className="mt-4">{drop.title}</CardTitle>
-                        <CardDescription>{drop.description}</CardDescription>
-                      </CardHeader>
-                    </Card>
+                          <CardTitle className="mt-4">{drop.title}</CardTitle>
+                          <CardDescription>{drop.description}</CardDescription>
+                        </CardHeader>
+                      </Card>
+                    </Link>
                   ))}
                 </div>
               </div>

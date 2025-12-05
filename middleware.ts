@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server"
 import { getMockSession } from "@/lib/auth/mock-auth"
 
 export async function middleware(request: NextRequest) {
-  const hasMockSession = getMockSession() !== null
+  const hasMockSession = getMockSession(request.cookies) !== null
 
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     if (request.nextUrl.pathname.startsWith("/admin")) {

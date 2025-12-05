@@ -30,11 +30,11 @@ export default function SignUpPage() {
     try {
       const supabase = createClient()
 
-      // Check if email is from a university domain
-      const emailDomain = email.split("@")[1]
-      if (!emailDomain || (!emailDomain.includes(".ac.") && !emailDomain.includes(".edu"))) {
-        throw new Error("Please use your university email address")
-      }
+      // // Check if email is from a university domain
+      // const emailDomain = email.split("@")[1]
+      // if (!emailDomain || (!emailDomain.includes(".ac.") && !emailDomain.includes(".edu"))) {
+      //   throw new Error("Please use your university email address")
+      // }
 
       const { data, error } = await supabase.auth.signUp({
         email,

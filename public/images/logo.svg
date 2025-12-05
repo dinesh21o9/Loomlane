@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="90" viewBox="0 0 300 90" fill="none">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+    text { font-family: 'Anton', Arial, sans-serif; }
+  </style>
+  <text x="50%" y="55%" fill="#40916c" font-size="70" font-weight="700" text-anchor="middle" dominant-baseline="middle">
+    LOOMLANE
+  </text>
+</svg>
