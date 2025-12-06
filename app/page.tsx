@@ -9,8 +9,7 @@ const heroPosters = [
   {
     title: "BITS Hyderabad Heritage Hoodie",
     tag: "Live Drop",
-    image:
-      "https://images.unsplash.com/photo-1542293787938-4d273c3f3f50?auto=format&fit=crop&w=1200&q=80&q=80",
+    image: "/images/products/bphc-graphic-tee.png",
     accent: "Emerald fleece • limited batch",
   },
   {
