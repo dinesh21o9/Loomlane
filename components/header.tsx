@@ -82,7 +82,7 @@ export function Header({ user, cartCount = 0 }: HeaderProps) {
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
-              <div className="flex flex-col gap-4 mt-8">
+              <div className="flex flex-col gap-4 mt-8 px-6 pb-6 lg:px-0 lg:pb-0">
                 <Link href="/">
                   <img src="/images/loomlane-logo.png" alt="Loomlane" className="h-8 mb-4 object-contain" />
                 </Link>

@@ -11,19 +11,25 @@ interface ShopPageProps {
 }
 
 export default async function ShopPage({ searchParams }: ShopPageProps) {
-  const user = await getCurrentUser()
-  const allProducts = await getProducts(user?.university_id)
-  const selectedDropId = searchParams?.drop
-  const products = selectedDropId ? allProducts.filter((p) => p.drop_id === selectedDropId) : allProducts
+  const params = await searchParams;
 
-  const categories = [...new Set(products.map((p) => p.category))]
-  const productsByCategory = categories.reduce(
+  const user = await getCurrentUser();
+  const allProducts = await getProducts(user?.university_id);
+
+  const selectedDropId = params?.drop as string | undefined;
+
+  const products = selectedDropId
+    ? allProducts.filter((p) => String(p.drop_id) === selectedDropId)
+    : allProducts;
+  const categories = Array.from(new Set(products.map((p) => p.category)));
+
+  const productsByCategory = categories.reduce<Record<string, typeof products>>(
     (acc, category) => {
-      acc[category] = products.filter((p) => p.category === category)
-      return acc
+      acc[category] = products.filter((p) => p.category === category);
+      return acc;
     },
-    {} as Record<string, typeof products>,
-  )
+    {}
+  );
 
   return (
     <div className="min-h-screen flex flex-col">
